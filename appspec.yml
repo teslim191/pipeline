@@ -1,1 +1,23 @@
+version: 0.0
+os: windows
+files:
+  - source: /
+    destination: C:\inetpub\wwwroot
+    overwrite: true
+
+hooks:
+  BeforeInstall:
+    - location: scripts/install_dependencies.ps1
+      timeout: 300
+      runas: Administrator
+
+  AfterInstall:
+    - location: scripts/start_server.ps1
+      timeout: 300
+      runas: Administrator
+
+  ApplicationStart:
+    - location: scripts/verify_server.ps1
+      timeout: 300
+      runas: Administrator
 
