@@ -7,17 +7,19 @@ files:
 
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies.ps1
+    - location: scripts/install_dependencies.sh
       timeout: 300
       runas: Administrator
+      shell: bash
 
   AfterInstall:
-    - location: scripts/start_server.ps1
+    - location: scripts/start_server.sh
       timeout: 300
       runas: Administrator
+      shell: bash
 
   ApplicationStart:
-    - location: scripts/verify_server.ps1
+    - location: scripts/verify_server.sh
       timeout: 300
       runas: Administrator
-
+      shell: bash
