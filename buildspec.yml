@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Node.js and npm...
+      - pacman -Syu --noconfirm
+      - pacman -S --noconfirm nodejs npm
+      - echo Installing project dependencies...
+      - npm install
+  pre_build:
+    commands:
+      - echo Preparing for build...
+  build:
+    commands:
+      - echo Running tests...
+      - npm test # Runs your test scripts
+      - echo Building the project...
+      - npm run build # Or any other build script you have
+  post_build:
+    commands:
+      - echo Build completed successfully
+      - zip -r output.zip ./ # Adjust if needed to specify only certain files or directories
+
+artifacts:
+  files:
+    - output.zip
+  discard-paths: yes
