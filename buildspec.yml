@@ -19,11 +19,13 @@ phases:
     commands:
       - echo "Checking dependencies..."
       - npm install
-      - if ($LASTEXITCODE -ne 0) { Write-Host "npm install failed"; exit 1 }
   post_build:
     commands:
       - echo "Build completed successfully"
-      - if (Test-Path build) { Compress-Archive -Path build\* -DestinationPath output.zip } else { echo "Build directory does not exist." }
+      - echo "Zipping necessary files..."
+      - Compress-Archive -Path .\* -DestinationPath output.zip
+
 artifacts:
   files:
     - output.zip
+  discard-paths: yes
