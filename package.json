@@ -4,7 +4,8 @@
   "description": "demonstrating CI/CD using node and aws",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "build": "npm run build"
   },
   "repository": {
     "type": "git",
