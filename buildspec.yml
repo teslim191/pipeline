@@ -2,29 +2,28 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      nodejs: 20
     commands:
-      - echo Installing Node.js and npm...
+      - echo "Installing Node.js and npm..."
       - curl -o nodejs.msi https://nodejs.org/dist/v20.11.0/node-v20.11.0-x64.msi
       - msiexec.exe /i nodejs.msi /quiet /norestart
-      - echo Verifying installation...
+      - echo "Verifying installation..."
       - set "PATH=%PATH%;C:\Program Files\nodejs"
       - node -v
       - npm -v
-      - echo Installing project dependencies...
+      - echo "Installing project dependencies..."
       - npm install
   pre_build:
     commands:
-      - echo Preparing for build...
+      - echo "Preparing for build..."
   build:
     commands:
-      - echo Building the project...
-      - npm install || { echo "Install failed"; exit 1; }
+      - echo "Checking dependencies..."
+      - npm install
+      - if ($LASTEXITCODE -ne 0) { Write-Host "npm install failed"; exit 1 }
   post_build:
     commands:
-      - echo Build completed successfully
-      - if exist build\* (powershell Compress-Archive -Path 'build\*' -DestinationPath 'output.zip') else echo "Build directory does not exist."
+      - echo "Build completed successfully"
+      - if (Test-Path build) { Compress-Archive -Path build\* -DestinationPath output.zip } else { echo "Build directory does not exist." }
 artifacts:
   files:
     - output.zip
