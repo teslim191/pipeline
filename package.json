@@ -1,0 +1,24 @@
+{
+  "name": "pipeline",
+  "version": "1.0.0",
+  "description": "demonstrating CI/CD using node and aws",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "pipeline"
+  },
+  "keywords": [
+    "ci/cd",
+    "node",
+    "express",
+    "pactum"
+  ],
+  "author": "teslim jimoh",
+  "license": "MIT",
+  "dependencies": {
+    "pactum": "^3.7.1"
+  }
+}
