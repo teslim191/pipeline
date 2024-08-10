@@ -4,9 +4,10 @@ phases:
   install:
     commands:
       - echo Installing Node.js and npm...
-      - curl -o nodejs.msi https://nodejs.org/dist/v16.17.0/node-v16.17.0-x64.msi
+      - curl -o nodejs.msi https://nodejs.org/dist/v20.11.0/node-v20.11.0-x64.msi
       - msiexec.exe /i nodejs.msi /quiet /norestart
       - echo Verifying installation...
+      - setx PATH "%PATH%;C:\Program Files\nodejs"
       - node -v
       - npm -v
       - echo Installing project dependencies...
@@ -25,7 +26,7 @@ phases:
     commands:
       - echo Build completed successfully
       - echo Compressing build output...
-      - Compress-Archive -Path build/* -DestinationPath output.zip
+      - powershell Compress-Archive -Path 'build\*' -DestinationPath 'output.zip'
 
 artifacts:
   files:
