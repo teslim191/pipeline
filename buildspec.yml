@@ -25,9 +25,8 @@ phases:
     commands:
       - echo Build completed successfully
       - echo Compressing build output...
-      - Compress-Archive -Path dist/* -DestinationPath output.zip
+      - Compress-Archive -Path build/* -DestinationPath output.zip
 
 artifacts:
   files:
     - output.zip
-  discard-paths: yes
