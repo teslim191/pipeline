@@ -1,3 +1,5 @@
+version: 0.2
+
 phases:
   install:
     runtime-versions:
@@ -10,12 +12,14 @@ phases:
       - set "PATH=%PATH%;C:\Program Files\nodejs"
       - node -v
       - npm -v
+      - echo Installing project dependencies...
+      - npm install
   pre_build:
     commands:
       - echo Preparing for build...
   build:
     commands:
-      - echo Installing project dependencies...
+      - echo Building the project...
       - npm install || { echo "Install failed"; exit 1; }
   post_build:
     commands:
